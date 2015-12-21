@@ -1,7 +1,8 @@
 class profiles::gitserver {
 
-  git::git { 'git': 
-    base_path =>  '/opt/repos/git',
+  class { 'gitlab':
+    external_url => 'http://gitlab.koewacht.net',
+    edition      => 'ce',
   }
 
 }
