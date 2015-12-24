@@ -5,13 +5,13 @@ class profiles::jenkins {
   
   # first step, experiment with git/github
 
-  jenkins::plugin { 'git': }
+  jenkins::plugin { 'gitlab-plugin': }
 
-  jenkins::plugin { ['promoted-builds', 'credentials', 'git-client',
-                       'scm-api', 'mailer', 'token-macro', 'matrix-project',
-                       'ssh-credentials', 'parameterized-trigger' ]: }
+  #jenkins::plugin { ['promoted-builds', 'credentials', 'git-client',
+  #                     'scm-api', 'mailer', 'token-macro', 'matrix-project',
+  #                     'ssh-credentials', 'parameterized-trigger' ]: }
 
-  jenkins::plugin { 'github': }
-  jenkins::plugin { [ 'plain-credentials', 'github-api' ]: }
+  #jenkins::plugin { 'github': }
+  #jenkins::plugin { [ 'plain-credentials', 'github-api' ]: }
 
 }
