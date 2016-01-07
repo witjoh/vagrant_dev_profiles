@@ -9,7 +9,7 @@ class profiles::gitserver (
   }
 
   class { 'gitlab':
-    external_url => 'http://gitlab.koewacht.net',
+    external_url => "http://${::fqdn}",
     edition      => $validated_version,
   }
 
