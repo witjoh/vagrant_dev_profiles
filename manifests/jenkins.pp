@@ -16,5 +16,8 @@ class profiles::jenkins {
   jenkins::plugin { 'gitlab-plugin':
     version => '1.1.28',
   }
-
+  
+  jenkins::plugin { 'warnings':
+    version => latest,
+  }
 }
