@@ -7,12 +7,12 @@ class profiles::jenkins {
 
   jenkins::plugin { 'git':
     version =>  '2.4.1',
-    before  => Jenkins::plugin['git-client'],
+    before  => Jenkins::Plugin['git-client'],
   }
     
   jenkins::plugin { 'git-client':
     version =>  '1.19.1',
-    before  => Jenkins::plugin['gitlab-plugin'],
+    before  => Jenkins::Plugin['gitlab-plugin'],
   }
   
   jenkins::plugin { 'gitlab-plugin':
@@ -21,12 +21,12 @@ class profiles::jenkins {
 
   jenkins::plugin { 'matrix-projects':
     version => latest,
-    before  => Jenkins::plugin['warnings'],
+    before  => Jenkins::Plugin['warnings'],
   }
   
   jenkins::plugin { 'analysis-core':
     version => latest,
-    before  => Jenkins::plugin['warnings'],
+    before  => Jenkins::Plugin['warnings'],
   }
   
   jenkins::plugin { 'warnings':
