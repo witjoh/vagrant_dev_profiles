@@ -8,7 +8,7 @@ class profiles::jenkins::testtools {
 
   include ::profiles::packages
   
-  package { ['rubygem-bundler', 'ruby-devel']:
+  package { ['rubygem-bundler', 'ruby-devel', 'rubygem-rake']:
     ensure => present,
   }
 }
