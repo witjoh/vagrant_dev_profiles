@@ -1,7 +1,8 @@
 class profiles::jenkins {
 
-  include git::client
-  include jenkins
+  include ::git::client
+  include ::jenkins
+  include ::profiles::jenkins::testtools
   
   # gitlab-plugin and dependencies
 
