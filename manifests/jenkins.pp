@@ -33,4 +33,16 @@ class profiles::jenkins {
   jenkins::plugin { 'warnings':
     version => latest,
   }
+  
+  jenkins::plugin { 'downstream-buildview':
+    version => latest,
+  }
+  
+    jenkins::plugin { 'build-pipeline-plugin':
+    version => latest,
+  }
+  
+  jenkins::plugin { 'parameterized-trigger':
+    version => latest,
+  }
 }
