@@ -15,8 +15,8 @@
 # We choose for rvm, since it is also supported by jenkins
 #
 class profiles::ruby (
-  Array[String] $supported_ruby_versions = [ 'ruby-1.9.3-p551','ruby-2.0.0-p643','ruby-2.1.7' ],
-  String         $default_ruby_version    = 'ruby-2.1.7',
+  Array[String] $supported_ruby_versions = [ 'ruby-1.9.3-p551','ruby-2.0.0-p648','ruby-2.1.9','ruby-2.2.5','ruby-2.3.1' ],
+  String         $default_ruby_version    = 'ruby-2.2.5',
 )  {
 
   ### we really have dependencies troublesto make the key accepted ...
