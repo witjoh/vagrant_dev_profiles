@@ -24,8 +24,15 @@ class profiles::dev_env(
     mode    => '0664',
   }
 
-  class{ ["vim", "skeleton"]:
+  class{ "vim":
       user_list => ['vagrant'],
+      require   => Package['git'],
+  }
+
+  # Checkout the puppet3 adopted skeleton (used @ vdab)
+  class{ "skeleton":
+      user_list => ['vagrant'],
+      branch    => 'puppet3',
       require   => Package['git'],
   }
 
