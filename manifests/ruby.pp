@@ -1,4 +1,4 @@
-# handles the isntallation of rvm and pupept supported ruby versions
+# handles the isntallation of rvm and puppet supported ruby versions
 #
 # Ruby version  Puppet 3.x                Puppet 4.x
 # 2.2.x         No                        Lightly Tested
