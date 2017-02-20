@@ -33,13 +33,20 @@ class profiles::ruby (
     gnupg_key_id => false,
   }
 
-  rvm::system_user { vagrant: }
+  rvm::system_user { 'vagrant': }
 
   $supported_ruby_versions.each | String $version| {
     if $version == $default_ruby_version {
       $default_version = true
     }  else {
       $default_version = false
+    }
+
+    # as of nnokogiri version 1.7.0, ruby => 2.1.0 is required
+    if versioncmp($version, 'ruby-2.1.0') < 0 {
+      $nokogiri_version = '1.6.8.1'
+    } else {
+      $nokogiri_version = 'present'
     }
 
     rvm_system_ruby { $version:
@@ -57,7 +64,7 @@ class profiles::ruby (
     }
 
     rvm_gem { "${version}/nokogiri":
-      ensure   => present,
+      ensure   => $nokogiri_version,
       withopts => "-- --use-system-libraries -v='1.6.6.4'",
       require  => Rvm_system_ruby[$version],
     }
