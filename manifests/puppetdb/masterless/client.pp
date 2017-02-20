@@ -6,6 +6,8 @@
 #
 class profiles::puppetdb::masterless::client {
 
+  include ::puppetrepos
+
   package { 'puppetdb-termini':
     ensure => installed,
   }

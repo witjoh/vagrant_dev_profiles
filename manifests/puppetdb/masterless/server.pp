@@ -6,6 +6,8 @@
 #
 class profiles::puppetdb::masterless::server {
 
+  include ::puppetrepos
+
   service { 'firewalld':
     ensure => stopped,
     enable => false,
