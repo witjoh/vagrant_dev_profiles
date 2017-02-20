@@ -4,8 +4,8 @@
 # become a better TDD developer
 #
 class profiles::dev_env(
-  String $git_name  = 'Johan De Wit',
-  String $git_email = 'johan@koewacht.net',
+  String $git_name,
+  String $git_email,
   String $git_user  = 'vagrant',
 )  {
 

@@ -11,8 +11,6 @@ class profiles::puppetdb::masterless::server {
     enable => false,
   }
 
-  include ::puppetrepos
-
   class { '::apache':
     default_vhost => false,
   }
