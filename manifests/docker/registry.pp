@@ -6,8 +6,4 @@ class profiles::docker::registry {
     expose           => ['5000'],
     extra_parameters => [ '--restart=always' ],
   }
-
-  docker::registry { 'localhost:5000':
-    require => Docker::Run['registry'],
-  }
 }
