@@ -1,5 +1,6 @@
 class profiles::docker::server {
 
-  include docker
+  class { '::docker':
+    docker_users => [ 'vagrant' ]
 
 }
