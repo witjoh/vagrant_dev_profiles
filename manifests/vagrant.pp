@@ -12,4 +12,11 @@ class profiles::vagrant {
     plugin => 'vagrant-hostmanager',
     user   => 'vagrant'
   }
+
+  vagrant::plugin { 'vagrant-libvirt_vagrant':
+    plugin => 'vagrant-libvirt',
+    user   => 'vagrant',
+  }
+
+
 }
