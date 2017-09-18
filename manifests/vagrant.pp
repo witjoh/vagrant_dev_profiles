@@ -8,7 +8,8 @@ class profiles::vagrant {
     provider => 'yum',
   }
 
-  vagrant::plugin { 'vagrant-hostmanager':
-    user => 'vagrant'
+  vagrant::plugin { 'vagrant-hostmanager_vagrant':
+    plugin => 'vagrant-hostmanager',
+    user   => 'vagrant'
   }
 }
