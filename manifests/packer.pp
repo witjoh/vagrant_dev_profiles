@@ -11,12 +11,13 @@
 define profiles::packer (
   $user           = $title,
   $home_dir       = undef,
-  $archive_uri    = 'file://vagrant/repos/archives',
+  $archive_uri    = 'file:///vagrant/repos/archives',
   $packer_archive = 'packer_1.1.0_linux_amd64.zip',
 ) {
 
+
   if $home_dir {
-    $install_dir = $home_dir
+    $install_dir = "${home_dir}/bin"
   } else {
     if $user == 'root' {
       $install_dir = '/usr/local/bin'
@@ -30,8 +31,13 @@ define profiles::packer (
     owner  => $user,
   }
 
+  # dependencie for the archive format
+  ensure_resource( 'package', 'unzip', { 'ensure' => 'present' } )
+
+  $packer_archive_dir = basename($packer_archive)
+
   archive { "packer_archive_$title":
-    path         => "/tmp/${packer_archive}",
+    path         => "/tmp/${packer_archive_dir}",
     source       => "${archive_uri}/${packer_archive}",
     extract      => true,
     extract_path => $install_dir,
@@ -39,7 +45,7 @@ define profiles::packer (
     cleanup      => true,
     user         => $user,
     group        => $user,
-    require      => $install_dir,
+    require      => File[$install_dir],
   }
 }
 

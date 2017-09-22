@@ -13,10 +13,20 @@ class profiles::vagrant {
     user   => 'vagrant'
   }
 
-  vagrant::plugin { 'vagrant-libvirt_vagrant':
-    plugin => 'vagrant-libvirt',
-    user   => 'vagrant',
+  # install dependencies to be able to install the vagrant-libvirt plugin
+
+  $libvirt_dependencies = [ 'libvirt', 'libvirt-devel', 'ruby-devel', 'gcc', 'qemu-kvm' ]
+
+  package { $libvirt_dependencies:
+    ensure => present,
   }
 
+  vagrant::plugin { 'vagrant-libvirt_vagrant':
+    plugin  => 'vagrant-libvirt',
+    user    => 'vagrant',
+    require => Package[$libvirt_dependencies],
+  }
+
+  profiles::packer { 'vagrant': }
 
 }
