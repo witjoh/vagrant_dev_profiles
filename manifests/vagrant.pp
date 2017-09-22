@@ -15,7 +15,7 @@ class profiles::vagrant {
 
   # install dependencies to be able to install the vagrant-libvirt plugin
 
-  $libvirt_dependencies = [ 'libvirt', 'libvirt-devel', 'ruby-devel', 'gcc', 'qemu-kvm' ]
+  $libvirt_dependencies = [ 'libvirt', 'libvirt-devel', 'ruby-devel', 'qemu-kvm' ]
 
   package { $libvirt_dependencies:
     ensure => present,
