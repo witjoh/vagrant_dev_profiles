@@ -27,6 +27,6 @@ class profiles::vagrant {
     require => Package[$libvirt_dependencies],
   }
 
-  profiles::packer { 'vagrant': }
+  #profiles::packer { 'vagrant': }
 
 }
