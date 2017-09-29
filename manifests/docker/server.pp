@@ -4,5 +4,6 @@ class profiles::docker::server {
     docker_users                => [ 'vagrant' ],
     use_upstream_package_source => false,
     package_name                => 'docker',
+    docker_group                => 'dockerroot',
   }
 }
