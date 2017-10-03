@@ -11,6 +11,19 @@ class profiles::docker::server {
     ensure =>  present,
   }
 
+  service {'docker':
+    ensure  => running,
+    aenable => true,
+    require => Package['docker'],
+  }
+
+
+  service {'docker-storage-setup':
+    ensure  => running,
+    aenable => true,
+    require => Package['docker'],
+  }
+
   # bug in rpm .... 
   # /usr/bin/docker-current: Error response from daemon: shim error: docker-runc not installed on system.
   #
