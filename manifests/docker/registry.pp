@@ -10,7 +10,7 @@ class profiles::docker::registry {
 
   # only in RedHat based systems
 
-  packer { 'docker-registry':
+  package { 'docker-registry':
     ensure => latest,
   }
 }
