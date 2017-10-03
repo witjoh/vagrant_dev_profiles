@@ -11,7 +11,7 @@ class profiles::docker::server {
   # /usr/bin/docker-current: Error response from daemon: shim error: docker-runc not installed on system.
   #
 
-  pakage { 'docker':
+  package { 'docker':
     ensure =>  present,
   }
 
