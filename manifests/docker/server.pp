@@ -7,13 +7,13 @@ class profiles::docker::server {
   #  docker_group                => 'dockerroot',
   #}
 
-  # bug in rpm .... 
-  # /usr/bin/docker-current: Error response from daemon: shim error: docker-runc not installed on system.
-  #
-
   package { 'docker':
     ensure =>  present,
   }
+
+  # bug in rpm .... 
+  # /usr/bin/docker-current: Error response from daemon: shim error: docker-runc not installed on system.
+  #
 
   file { '/usr/libexec/docker/docker-runc':
     ensure  => link,
