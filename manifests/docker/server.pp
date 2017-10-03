@@ -13,14 +13,14 @@ class profiles::docker::server {
 
   service {'docker':
     ensure  => running,
-    aenable => true,
+    enable  => true,
     require => Package['docker'],
   }
 
 
   service {'docker-storage-setup':
     ensure  => running,
-    aenable => true,
+    enable  => true,
     require => Package['docker'],
   }
 
