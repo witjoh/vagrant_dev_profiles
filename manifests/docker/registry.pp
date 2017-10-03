@@ -10,7 +10,23 @@ class profiles::docker::registry {
 
   # only in RedHat based systems
 
-  package { 'docker-registry':
-    ensure => latest,
+  package { 'docker-distribution':
+    ensure => present,
   }
+
+  file_line { 'adjust registry data path':
+    ensure  => present,
+    path    => '/etc/docker-distribution/registry/config.yml',
+    line    => '        rootdirectory: /vagrant/repos/docker-registry',
+    match   => 'rootdirectory:',
+    require => Package['docker-distribution'],
+  }
+
+  service { 'docker-distribution':
+    ensure    => running,
+    enable    => true,
+    subscribe => File_line['adjust registry data path'],
+  }
+
+
 }
