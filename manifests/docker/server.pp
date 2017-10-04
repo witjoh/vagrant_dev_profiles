@@ -35,9 +35,9 @@ class profiles::docker::server {
   }
 
   file_line { 'configure storage_driver':
-    path    => '/etc/sysconfig/docker-storage-setup',
-    line    => 'STORAGE_DRIVER=overlay2',
-    match   => '^STORAGE_DRIVER',
-    notifty => Service['docker-storage-setup','docker'],
+    path   => '/etc/sysconfig/docker-storage-setup',
+    line   => 'STORAGE_DRIVER=overlay2',
+    match  => '^STORAGE_DRIVER',
+    notify => Service['docker-storage-setup','docker'],
   }
 }
