@@ -34,8 +34,10 @@ class profiles::docker::server {
     require => Package['docker'],
   }
 
-  group { 'dockerroot':
-    members => ['vagrant'],
-    require => Package['docker'],
+  file_line { 'configure storage_driver':
+    path    => '/etc/sysconfig/docker-storage-setup',
+    line    => 'STORAGE_DRIVER=overlay2',
+    match   => '^STORAGE_DRIVER',
+    notifty => Service['docker-storage-setup','docker'],
   }
 }
