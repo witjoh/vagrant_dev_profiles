@@ -14,19 +14,19 @@ class profiles::docker::registry {
     ensure => present,
   }
 
-  file_line { 'adjust registry data path':
-    ensure  => present,
-    path    => '/etc/docker-distribution/registry/config.yml',
-    line    => '        rootdirectory: /vagrant/repos/docker-registry',
-    match   => 'rootdirectory:',
-    require => Package['docker-distribution'],
+  yaml_settings { '/etc/docker-distribution/registry/config.yml':
+    values => {
+      'storage/filesystem' => { 'rootdirectory' => '/vagrant/repos/docker-registry', },
+      'storage.delete'     => { 'enabled'       => 'true', },
+    },
+    notify                 => Service['docker-distribution'],
+    require                => Package['docker-distribution'],
   }
 
   service { 'docker-distribution':
-    ensure    => running,
-    enable    => true,
-    subscribe => File_line['adjust registry data path'],
+    ensure  => running,
+    enable  => true,
+    require => Package['docker-distribution'],
   }
-
 
 }
