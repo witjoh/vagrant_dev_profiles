@@ -16,7 +16,7 @@ class profiles::dev_env(
     ensure => present,
   }
 
-  file { "/home/${git_user}/.gitconfig": 
+  file { "/home/${git_user}/.gitconfig":
     ensure  => file,
     content => "[user]\n        name = ${git_name}\n        email = ${git_email}\n[color]\n        ui = true",
     owner   => $git_user,
@@ -26,13 +26,6 @@ class profiles::dev_env(
 
   class{ "vim":
       user_list => ['vagrant'],
-      require   => Package['git'],
-  }
-
-  # Checkout the puppet3 adopted skeleton (used @ vdab)
-  class{ "skeleton":
-      user_list => ['vagrant'],
-      branch    => 'puppet3',
       require   => Package['git'],
   }
 
