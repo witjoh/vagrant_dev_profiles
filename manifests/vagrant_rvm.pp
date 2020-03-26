@@ -12,8 +12,32 @@ class profiles::vagrant_rvm {
     require =>  Class['profiles::rvm_key'],
   }
 
-  # puppet ruby versions : 6 2.5.7p206
-  # puppet ruby versions : 5 2.4.9p362
-  single_user_rvm::install_ruby { 'ruby-2.5.7': user => 'vagrant' }
-  single_user_rvm::install_ruby { 'ruby-2.4.9': user => 'vagrant' }
+  [ 'ruby-2.5.7', 'ruby-2.4.9' ].each | String $version | {
+
+    single_user_rvm::install_ruby { $version:
+      user => 'vagrant',
+    }
+
+    single_user_rvm::gem { "${version}-bundler":
+      ensure      => present,
+      ruby_string => $version,
+      user        => 'vagrant',
+      gem         => 'bundler',
+    }
+
+    single_user_rvm::gem { "${version}-puppet-retrospec":
+      ensure      => present,
+      ruby_string => $version,
+      user        => 'vagrant',
+      gem         => 'puppet-retrospec',
+    }
+
+    single_user_rvm::gem { "${version}-nokogiri":
+      ensure      => present,
+      ruby_string => $version,
+      user        => 'vagrant',
+      gem         => 'nokogiri',
+    }
+    #withopts => "-- --use-system-libraries -v='1.6.6.4'",
+  }
 }
