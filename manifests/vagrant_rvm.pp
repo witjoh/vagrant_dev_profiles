@@ -2,10 +2,15 @@
 
 class profiles::vagrant_rvm {
 
+  include profiles::rvm_key
+
   user { 'vagrant':
     ensure => present,
   }
-  single_user_rvm::install { 'vagrant': }
+
+  single_user_rvm::install { 'vagrant':
+    require =>  Class['profiles::rvm_key'],
+  }
 
   # puppet ruby versions : 6 2.5.7p206
   # puppet ruby versions : 5 2.4.9p362
