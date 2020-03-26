@@ -1,6 +1,6 @@
 # profiles::dev_env
 #
-# Profile to manage all stuff  we need to 
+# Profile to manage all stuff  we need to
 # become a better TDD developer
 #
 class profiles::dev_env(
