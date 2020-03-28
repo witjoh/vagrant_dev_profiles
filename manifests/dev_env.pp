@@ -12,9 +12,7 @@ class profiles::dev_env(
   # install vim syntax highlighting and inline code checkers
   #
 
-  package { 'git':
-    ensure => present,
-  }
+  include profiles::tools::git
 
   file { "/home/${git_user}/.gitconfig":
     ensure  => file,
@@ -26,7 +24,7 @@ class profiles::dev_env(
 
   class{ "vim":
       user_list => ['vagrant'],
-      require   => Package['git'],
+      require   => Class['profiles::tools::git'],
   }
 
   $profile_content = @(END)
